@@ -9,10 +9,10 @@ class CrawlUser
   
   def initialize(db_name)
     @client = Twitter::REST::Client.new do |config|
-      config.consumer_key = 'itwFkyqvaubYZOo7wyf4TtRq0'
-      config.consumer_secret = '4z2DKuIywK0H7F4CBdKhgB0cVXGkLWC28FQfPdVltwqJYGVCZ3'
-      config.access_token = '594247802-J3UgFLRQ6wxqKZHis3ErbC1etEsX7kVozOaxCTeY'
-      config.access_token_secret = 'lAXIbMLz9hEGgJj280SpE7952dR0yQsE6xSeJ0y9GvyEh'
+      config.consumer_key = 'JGm4c5dQYI2ByxLpnSeKd0lTD'
+      config.consumer_secret = 'TNYKOeu6D6Qbs4EnsCN8XGxxXJruNST5rFiagISJaMaiQGjQOU'
+      config.access_token = '594286403-Tkacwv9rSFNBwxubgKvcDCeK8PmEmN5eKWLI43XA'
+      config.access_token_secret = 'HG3nqJjubQErKLvLqo0SJYeugPKsrqaWPX0jqfPzgw8Zc'
     end
     File.delete(db_name) if File.exists?db_name
     @tags = []
@@ -41,6 +41,7 @@ class CrawlUser
         users.each do |user|
           if user.lang == "en"
             @DB.execute(insert_query, user.screen_name,index)
+            puts user.screen_name
             # file.write(user.name)
             # file.write("\n")
           end
@@ -58,6 +59,6 @@ class CrawlUser
   end
 end
 
-db_name = "TwitterData0520.sqlite"
+db_name = "TwitterData2.sqlite"
 crawler = CrawlUser.new(db_name)
 crawler.get_user()
